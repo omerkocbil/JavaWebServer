@@ -21,16 +21,14 @@ public class ClientPrev {
     private ObjectInputStream sInput;
     private ObjectOutputStream sOutput;
     private ServerListenThread ListenThread;
-    DefaultListModel defaultListModel;
     private String server;
     private int port;
     private String username;
 
-    public ClientPrev(String server, int port, String username, DefaultListModel defaultListModel) {
+    public ClientPrev(String server, int port, String username) {
         this.server = server;
         this.port = port;
         this.username = username;
-        this.defaultListModel = defaultListModel;
     }
 
     public boolean start() {
@@ -112,7 +110,7 @@ public class ClientPrev {
 
     public static void main(String[] args) {
         // TODO code application logic here
-        ClientPrev client = new ClientPrev("127.0.0.1", 1500, "omerkocbil", null);
+        ClientPrev client = new ClientPrev("127.0.0.1", 1500, "omerkocbil");
         client.start();
         client.sendMessage("Ömer Koçbil");
     }

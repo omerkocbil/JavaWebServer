@@ -12,10 +12,12 @@
     <title>Server Form</title>
 </head>
 <body>
-    <form>
-        <inputText value=""/>
-        <commandButton value="Start Server" action="#{server.start}"></commandButton>
-        <commandButton value="Stop Server" action="#{server.stop}"></commandButton>
+    <form action = "/server/start" method="get">
+        <input type="text" value="" name="port"/>
+        <input type="submit" value="Start Server" />
+    </form>
+    <form action = "/server/stop" method="get">
+        <input type="submit" value="Stop Server" />
     </form>
 </body>
 </html>

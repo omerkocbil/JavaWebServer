@@ -12,13 +12,17 @@
     <title>Client Form</title>
 </head>
 <body>
-    <form>
-        <inputText value=""/>
-        <inputText value=""/>
-        <inputText value="" binding="#{message}"/>
-        <commandButton value="Connect" action="#{clientPrev.start}"></commandButton>
-        <commandButton value="Disconnect" action="#{clientPrev.disconnect}"></commandButton>
-        <commandButton value="Send Message" action="#{clientPrev.sendMessage(message.value)}"></commandButton>
+    <form action = "/client/start" method="get">
+        <input type="text" value=""  name="ip"/>
+        <input type="text" value="" name="port"/>
+        <input type="submit" value="Connect" />
+    </form>
+    <form action = "/client/stop" method="get">
+        <input type="submit" value="Disconnect" />
+    </form>
+    <form action = "/client/send" method="get">
+        <input type="text" value="" name="message"/>
+        <input type="submit" value="Send Message" />
     </form>
 </body>
 </html>

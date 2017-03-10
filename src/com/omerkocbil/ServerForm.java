@@ -16,17 +16,26 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Date;
 
-@WebServlet(name = "serverForm", urlPatterns = {"/server"})
+@WebServlet(name = "serverForm", urlPatterns = {"/server", "/server/start", "/server/stop"})
 public class ServerForm extends HttpServlet {
+
+    Server server;
 
     @Override
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
+        if(httpServletRequest.getServletPath().equals("/server/start")){
+            server = new Server(Integer.parseInt(httpServletRequest.getParameter("port")));
+            server.start();
+        }
+        else if(httpServletRequest.getServletPath().equals("/server/stop")){
+            server.stop();
+        }
+
         String nextJSP = "/server.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(httpServletRequest,httpServletResponse);
     }
 
-    Server server;
     public Socket socket;
     public ObjectInputStream sInput;
     public ObjectOutputStream sOutput;
@@ -35,7 +44,7 @@ public class ServerForm extends HttpServlet {
     public Date ConDate;
     public ClientThread ListenThread;
 
-    ServerForm(){
+    public ServerForm(){
 
     }
 
